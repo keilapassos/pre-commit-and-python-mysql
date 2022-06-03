@@ -55,7 +55,7 @@ database()
 def create_users():
     data = request.json
 
-    if not "nacionalidade" in data:
+    if "nacionalidade" not in data:
         data["nacionalidade"] = "default"
     else:
         data["nacionalidade"]
@@ -76,7 +76,14 @@ def create_users():
             f"""INSERT INTO users
             (id, nome, cpf, data_nascimento, sexo, peso, altura, nacionalidade)
             values
-            (default, '{data['nome']}', '{data['cpf']}', '{data['data_nascimento']}', '{data['sexo']}', '{data['peso']}', '{data['altura']}', {data['nacionalidade']})
+            (default,
+            '{data['nome']}',
+            '{data['cpf']}',
+            '{data['data_nascimento']}',
+             '{data['sexo']}',
+             '{data['peso']}',
+             '{data['altura']}',
+             {data['nacionalidade']})
         """
         )
 
